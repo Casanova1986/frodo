@@ -19,6 +19,11 @@ var express    = require("express");
  }
  });
  
+app.get('/', function (req, res) {
+   console.log("Got a GET request for the homepage");
+   res.send('Hello GET');
+})
+ 
  app.get("/getAllProduct",function(req,res){
  connection.query('SELECT * from products where active = 1', function(err, rows, fields) {
  // connection.end();
