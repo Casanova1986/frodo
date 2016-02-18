@@ -26,22 +26,53 @@ var express    = require("express");
  });
  
  
-app.get('/', function (req, res) {
-   console.log("Got a GET request for the homepage");
-   res.send('Hello GET');
-})
- 
- //Check thông tin Account
  app.post('/login', function (req, res) {
-  var user_name=req.body.user;
+  var username=req.body.user;
   var password=req.body.password;
-  var data = {
-        user : user_name,
-        pass : password
-    };
+  // var data = {
+  //       user : username,
+  //       pass : password
+  //   };
   
-  console.log("User name = "+user_name+", password is "+password);
-  res.send(data);
+connection.query('SELECT * from user where username = ? and password = ? and status > 0',
+[username,password],
+  function(err, rows, fields) {
+ // connection.end();
+ var data;
+   if (!err)
+   {
+    
+    if(rows.length >0)
+    {
+      connection.query('SELECT * from products where active = 1',
+      function(err1, rows1, fields) {
+     if (!err)
+   {
+      data = {
+      status:1,
+      rows1
+      };
+      
+     console.log('The solution is: ', data);
+     res.json(data);
+   }
+     
+    })
+    
+    };
+    
+     
+     
+     
+     
+       
+   }
+   else
+     console.log(err);
+   });
+
+
+  
 })
  
  
@@ -51,7 +82,7 @@ app.get("/getAllProduct",function(req,res){
  // connection.end();
    if (!err)
    {
-     console.log('The solution is: ', rows);
+     console.log('The solution is: ', rows.length);
       res.json(rows);
    }
    else
