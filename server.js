@@ -41,31 +41,27 @@ connection.query('SELECT * from user where username = ? and password = ? and sta
  var data;
    if (!err)
    {
-    
-    if(rows.length >0)
-    {
-      connection.query('SELECT * from products where active = 1',
-      function(err1, rows1, fields) {
-     if (!err)
-   {
-      data = {
-      status:1,
-      rows1
-      };
+      if(rows.length >0)
+      {
+         connection.query('SELECT * from products where active = 1',
+         function(err1, rows1, fields) 
+         {
+            if (!err)
+            {
+                data = 
+                {
+                  status:1,
+                  rows1
+                };
       
-     console.log('The solution is: ', data);
-     res.json(data);
-   }
+                console.log('The solution is: ', data);
+                res.json(data);
+             }
      
-    })
+          })
     
-    };
+       }
     
-     
-     
-     
-     
-       
    }
    else
      console.log(err);
