@@ -52,7 +52,7 @@ connection.query('SELECT * from user where username = ? and password = ? and sta
                 {
                   status:1,
                   rows1
-                };
+                }
       
                 console.log('The solution is: ', data);
                 res.json(data);
