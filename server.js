@@ -38,7 +38,6 @@ connection.query('SELECT * from user where username = ? and password = ? and sta
 [username,password],
   function(err, rows, fields) {
  // connection.end();
- var data;
    if (!err)
    {
       if(rows.length >0)
@@ -46,13 +45,9 @@ connection.query('SELECT * from user where username = ? and password = ? and sta
          connection.query('SELECT * from products where active = 1',
          function(err1, rows1, fields) 
          {
-            if (!err)
+            if (!err1)
             {
-                data = 
-                {
-                  status:1,
-                  rows1
-                }
+                var data = {status:1,rows1}
       
                 console.log('The solution is: ', data);
                 res.json(data);
