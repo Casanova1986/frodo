@@ -47,7 +47,7 @@ connection.query('SELECT * from user where username = ? and password = ? and sta
          {
             if (!err1)
             {
-                var data = {status:1,rows1}
+                var data = {status:1,rows1,}
       
                 console.log('The solution is: ', data);
                 res.json(data);
