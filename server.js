@@ -38,13 +38,12 @@ var express    = require("express");
   //       user : username,
   //       pass : password
   //   };
-  // /username = ? and password = ? and
-connection.query('SELECT * from user where  status > 0',
+  
+connection.query('SELECT * from user where username = ? and password = ? and status > 0',[username,password],
   function(err, rows, fields) {
  // connection.end();
    if (!err)
    {
-    console.log(rows);
       if(rows.length >0)
       {
          connection.query('SELECT * from products where active = 1',
@@ -53,7 +52,8 @@ connection.query('SELECT * from user where  status > 0',
             if (!err1)
             {
                 // var data = {status:1,rows1,}
-                console.log(rows1);
+      
+                console.log('The solution is: ', data);
                 res.json(rows1);
              }
      
