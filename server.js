@@ -26,6 +26,11 @@ var express    = require("express");
  });
  
  
+ app.get("/",function(req,res){
+
+      res.json("Hello Get");
+ });
+ 
  app.post('/login', function (req, res) {
   var username=req.body.user;
   var password=req.body.password;
