@@ -53,7 +53,7 @@ connection.query('SELECT * from user where username = ? and password = ? and sta
             {
                 // var data = {status:1,rows1,}
       
-                console.log('The solution is: ', data);
+                console.log('The solution is: ', rows1);
                 res.json(rows1);
              }
      
