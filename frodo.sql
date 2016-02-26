@@ -1,21 +1,24 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat Premium Data Transfer
 
-Source Server         : 192.168.0.170
-Source Server Version : 50537
-Source Host           : 192.168.0.170:3306
-Source Database       : frodo
+ Source Server         : frodo_ubuntu
+ Source Server Type    : MySQL
+ Source Server Version : 50547
+ Source Host           : localhost
+ Source Database       : frodo
 
-Target Server Type    : MYSQL
-Target Server Version : 50537
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 50547
+ File Encoding         : utf-8
 
-Date: 2016-02-03 14:05:25
+ Date: 02/18/2016 16:04:28 PM
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8;
+SET FOREIGN_KEY_CHECKS = 0;
+
 -- ----------------------------
--- Table structure for `items`
+--  Table structure for `items`
 -- ----------------------------
 DROP TABLE IF EXISTS `items`;
 CREATE TABLE `items` (
@@ -30,13 +33,14 @@ CREATE TABLE `items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of items
+--  Records of `items`
 -- ----------------------------
-INSERT INTO items VALUES ('DA0001M001', 'DA0001', 'M', 'xanh cobain', '1');
-INSERT INTO items VALUES ('DA0001S001', 'DA0001', 'S', 'đỏ', '1');
+BEGIN;
+INSERT INTO `items` VALUES ('DA0001M001', 'DA0001', 'M', 'xanh cobain', '1'), ('DA0001S001', 'DA0001', 'S', 'đỏ', '1');
+COMMIT;
 
 -- ----------------------------
--- Table structure for `products`
+--  Table structure for `products`
 -- ----------------------------
 DROP TABLE IF EXISTS `products`;
 CREATE TABLE `products` (
@@ -50,7 +54,28 @@ CREATE TABLE `products` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of products
+--  Records of `products`
 -- ----------------------------
-INSERT INTO products VALUES ('DA0001', 'Đầm chấm bi', 'DA', '1150000', '12', '1');
-INSERT INTO products VALUES ('SM0001', 'Sơ Mi 0001', 'SM', '750000', '6', '1');
+BEGIN;
+INSERT INTO `products` VALUES ('DA0001', 'Đầm chấm bi', 'DA', '1150000', '12', '1'), ('SM0001', 'Sơ Mi 0001', 'SM', '750000', '6', '1');
+COMMIT;
+
+-- ----------------------------
+--  Table structure for `user`
+-- ----------------------------
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
+  `status` int(1) NOT NULL COMMENT '0: bi khoa, 1: dang hoat dong',
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+--  Records of `user`
+-- ----------------------------
+BEGIN;
+INSERT INTO `user` VALUES ('haibang', '123456', '1');
+COMMIT;
+
+SET FOREIGN_KEY_CHECKS = 1;

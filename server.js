@@ -1,14 +1,11 @@
 
 var express    = require("express");
  var mysql      = require('mysql');
- var bodyParser = require('body-parser')
+ var bodyParser = require('body-parser');
 
- var connection = mysql.createConnection({
-   host     : 'localhost',
-   user     : 'root',
-   password : '123456',
-   database : 'frodo'
- });
+var Product = require('./database/model/product.js');
+var Users = require('./database/model/user.js');
+
  var app = express();
  
  app.use(express.static(__dirname + '/files'));
@@ -16,16 +13,7 @@ var express    = require("express");
  app.use(bodyParser.urlencoded({ extended: true }));
 
  
-
- connection.connect(function(err){
- if(!err) {
-     console.log("Database is connected 123 ... \n\n");  
- } else {
-     console.log("Error connecting database ... \n\n");  
- }
- });
- 
- 
+ //Function
  app.get("/",function(req,res){
 
       res.json("Hello Get");
@@ -38,58 +26,53 @@ var express    = require("express");
   //       user : username,
   //       pass : password
   //   };
+  var row1;
   
-connection.query('SELECT * from user where username = ? and password = ? and status > 0',[username,password],
-  function(err, rows, fields) {
- // connection.end();
-   if (!err)
+  Users.checkUser(username,password,
+  function(err, rows, fields) 
+  {
+     if (!err)
    {
-      if(rows.length >0)
-      {
-         connection.query('SELECT * from products where active = 1',
-         function(err1, rows1, fields) 
-         {
-            if (!err1)
-            {
-                // var data = {status:1,rows1,}
+     if(rows.length >0)
+     {
+        Product.getProducts(function(err,row1,fields)
+        {
+          if (!err)
+          res.json(row1);
+        });
       
-                console.log('The solution is: ', rows1);
-                res.json(rows1);
-             }
-     
-          })
-       }
+     }
    }
-   else
-     console.log(err);
-   });
-
-
+   
+   // console.log('The solution is: ', row1);
+   
+  });
+  
+ 
   
 })
  
- 
-// Load tất cả sản phẩm
-app.get("/getAllProduct",function(req,res){
- connection.query('SELECT * from products where active = 1', function(err, rows, fields) {
- // connection.end();
-   if (!err)
-   {
-     console.log('The solution is: ', rows.length);
-      res.json(rows);
-   }
-   else
-     console.log(err);
-     
-   });
- });
- 
-//  app.get('/:file(*)', function(req, res, next){
-//   var file = req.params.file
-//     , path = __dirname + '/files/' + file;
 
-//   res.(path);
-// });
+  app.get("/getProduct",function(req,res){
+
+      // var user = Product.getUsers();
+      res.json(Product.getUsers(function(err,rows)
+      {
+       if(!err)
+       {
+        console.log('The result is: ', rows);
+       }
+       else
+       {
+        console.log('The result is: ', rows);
+       }
+      })
+      
+      );
+      
+      // console.log('The result is: ', user);
+      // res.json(user);
+ });
  
  
  // app.listen(3000);
