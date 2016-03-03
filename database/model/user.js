@@ -4,7 +4,7 @@ module.exports = {
 	
   checkUser: function(_user,_password,callback) {
 
-   connection.query('SELECT * from user where username = ? and password = ? and status > 0',[_user,_password],callback)
+   connection.query('SELECT * from User where username = ? and password = ? and status > 0',[_user,_password],callback)
  
   },
   

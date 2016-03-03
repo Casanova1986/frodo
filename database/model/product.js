@@ -4,7 +4,7 @@ module.exports = {
 	
   getProducts: function(callback) {
 
-    connection.query('SELECT * from products where active = 1',callback);
+    connection.query('SELECT * from Products where active = 1',callback);
           
     // console.log('The solution is: ', data);      
    
