@@ -9,7 +9,7 @@ module.exports = {
   },
   
   sayHelloInSpanish: function(callback) {
-    connection.query('SELECT * from products where active = 1',function(err,rows,field)
+    connection.query('SELECT * from Products where active = 1',function(err,rows,field)
     {
     	if(err)
     	 return callback(err);

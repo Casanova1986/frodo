@@ -5,6 +5,7 @@ var express    = require("express");
 
 var Product = require('./database/model/product.js');
 var Users = require('./database/model/user.js');
+var Order = require('./database/model/order.js');
 
  var app = express();
  
@@ -18,6 +19,23 @@ var Users = require('./database/model/user.js');
 
       res.json("Hello Get");
  });
+
+app.post("/addOrder",function(req,res){
+
+      var orderID=req.body.orderID;
+      var orderDate=req.body.orderDate;
+      var username=req.body.username;
+      var customer_id=req.body.customer_id;
+      var money=req.body.money;
+
+      Order.addOrder(orderID,orderDate,username,customer_id,money,
+        function(err,rows,fields)
+        {
+        if (!err)
+          res.json("Add Order Success");
+        });
+    });
+
 
  app.post('/login', function (req, res) {
   var username=req.body.user;
