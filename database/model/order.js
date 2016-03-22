@@ -8,7 +8,7 @@ module.exports = {
   if (err) { throw err; }
 
 var order  = {order_id: orderID, order_date: orderDate, customer_id:customerID, username:user_id, money:total_money};
-connection.query('INSERT INTO Order SET ?',order, function(err,rows,field)
+connection.query('INSERT INTO `Order` SET ?',order, function(err,rows,field)
     {
     if (err) { 
       connection.rollback(function() {
