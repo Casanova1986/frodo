@@ -2,7 +2,7 @@ var connection = require("../connection/mysql_connection");
 
 module.exports = {
 
-  addOrder: function(orderID,orderDate,user_id. customerID,total_money,callback) {
+  addOrder: function(orderID,orderDate,user_id, customerID,total_money,callback) {
 
     connection.beginTransaction(function(err) {
   if (err) { throw err; }
