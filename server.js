@@ -33,6 +33,8 @@ app.post("/addOrder",function(req,res){
         {
         if (!err)
           res.json("Add Order Success");
+        else
+          res.json(err);
         });
     });
 

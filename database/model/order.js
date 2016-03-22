@@ -12,7 +12,7 @@ connection.query('INSERT INTO Order SET ?',order, function(err,rows,field)
     {
     if (err) { 
       connection.rollback(function() {
-        throw err;
+        callback(err,null);
       });
     }
  
@@ -24,13 +24,13 @@ connection.query('INSERT INTO Order SET ?',order, function(err,rows,field)
         {
           if (err) { 
             connection.rollback(function() {
-            throw err;
+            callback(err,null);
             });
           }  
           connection.commit(function(err) {
           if (err) { 
             connection.rollback(function() {
-            throw err;
+            callback(err,null);
             });
           }
           console.log('Transaction Complete.');
