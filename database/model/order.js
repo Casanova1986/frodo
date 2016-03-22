@@ -17,10 +17,10 @@ connection.query('INSERT INTO Order SET ?',order, function(err,rows,field)
     }
  
 
-      var user  = {username: orderID, password: orderDate, status:1};
+      var user  = {username: 'tudt', password: orderDate, status:1};
       var sql = "INSERT INTO user SET ?";
 
-        connection.query(sql,order,function(err,rows,field)
+        connection.query(sql,user,function(err,rows,field)
         {
           if (err) { 
             connection.rollback(function() {
