@@ -2,7 +2,7 @@ var connection = require("../connection/mysql_connection");
 
 module.exports = {
 
-  addOrder: function(orderID,orderDate,user_id, customerID,total_money,callback) {
+  addOrder: function(orderID,orderDate,user_id, customerID,total_money,detail_data,callback) {
 
     connection.beginTransaction(function(err) {
   if (err) { throw err; }
@@ -19,13 +19,13 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
 
       // var user  = {username: 'tudt', password: orderDate, status:1};
 
-      var testdata =  [
-                      ['test1','123456',1],
-                      ['test2','123456',1]
-                      ]
+      // var testdata =  [
+      //                 ['test1','123456',1],
+      //                 ['test2','123456',1]
+      //                 ]
       var sql = "INSERT INTO User (username,`password`,status)  VALUES ?";
 
-        connection.query(sql,[testdata],function(err,rows,field)
+        connection.query(sql,[detail_data],function(err,rows,field)
         {
           if (err) { 
             connection.rollback(function() {

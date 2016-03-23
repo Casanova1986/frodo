@@ -27,8 +27,9 @@ app.post("/addOrder",function(req,res){
       var username=req.body.username;
       var customer_id=req.body.customer_id;
       var money=req.body.money;
+      var details=req.body.details;
 
-      Order.addOrder(orderID,orderDate,username,customer_id,money,
+      Order.addOrder(orderID,orderDate,username,customer_id,money,details,
         function(err,rows,fields)
         {
         if (!err)
