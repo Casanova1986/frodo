@@ -25,9 +25,9 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
       //                 ]
       var sql = "INSERT INTO User (username,`password`,status)  VALUES ?";
 
-        connection.query(sql,[detail_data],function(err,rows,field)
+        var con = connection.query(sql,[detail_data],function(err,rows,field)
         {
-          console.log(connection.query.sql);
+          console.log(con.sql);
           if (err) { 
             connection.rollback(function() {
             callback(connection. query,null);
