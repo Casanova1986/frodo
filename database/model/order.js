@@ -27,7 +27,7 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
 
         connection.query(sql,[detail_data],function(err,rows,field)
         {
-          console.log(connection.query);
+          console.log(connection.query.sql);
           if (err) { 
             connection.rollback(function() {
             callback(connection. query,null);
