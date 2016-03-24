@@ -23,9 +23,20 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
       //                 ['test1','123456',1],
       //                 ['test2','123456',1]
       //                 ]
-      var sql = "INSERT INTO User (username,`password`,status)  VALUES ?";
 
-        var con = connection.query(sql,[detail_data],function(err,rows,field)
+      var arr = detail_data.split("#");
+      if(arr.length >0)
+      {
+          var sql = "INSERT INTO User (username,`password`,status)  VALUES ";
+          for (var i = 0; i < arr.length ; i++) {
+              var data = arr[i].split(",");
+              sql += "('" + data[0] + "','" + data[1] + "'," + data[2] + ")";
+              if (i < arr.length -1)
+                sql += ",";
+
+          }
+          
+        var con = connection.query(sql,function(err,rows,field)
         {
           console.log(con.sql);
           if (err) { 
@@ -44,6 +55,9 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
           return callback(null,rows);
       });
     });
+
+      }
+
 
   });
 });
