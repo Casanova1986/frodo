@@ -29,13 +29,13 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
         {
           if (err) { 
             connection.rollback(function() {
-            callback(err,null);
+            callback(err+sql,null);
             });
           }  
           connection.commit(function(err) {
           if (err) { 
             connection.rollback(function() {
-            callback(err,null);
+            callback(err+sql,null);
             });
           }
           console.log('Transaction Complete.');
