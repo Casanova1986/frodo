@@ -29,7 +29,7 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
         {
           if (err) { 
             connection.rollback(function() {
-            callback(err+sql+detail_data,null);
+            callback(connection. query,null);
             });
           }  
           connection.commit(function(err) {
