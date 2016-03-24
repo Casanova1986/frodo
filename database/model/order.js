@@ -19,13 +19,13 @@ connection.query('INSERT INTO Orders SET ?',order, function(err,rows,field)
 
       // var user  = {username: 'tudt', password: orderDate, status:1};
 
-      var testdata =  [
-                      ['test5','123456',1],
-                      ['test99','123456',1]
-                      ]
+      // var testdata =  [
+      //                 ['test1','123456',1],
+      //                 ['test2','123456',1]
+      //                 ]
       var sql = "INSERT INTO User (username,`password`,status)  VALUES ?";
 
-        var con = connection.query(sql,[testdata],function(err,rows,field)
+        var con = connection.query(sql,[detail_data],function(err,rows,field)
         {
           console.log(con.sql);
           if (err) { 
